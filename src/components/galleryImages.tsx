@@ -42,7 +42,7 @@ const windowOptions = [
 ];
 const defaultWindowOptions = windowOptions[0];
 
-const BasicDetails: React.FC = () => {
+const GalleryImages: React.FC = () => {
     const [sort, setSort]= useState(defaultSortOptions);
     const [section, setSection]= useState(defaultSectionOptions);
     const [window, setWindow]= useState(defaultWindowOptions);
@@ -91,7 +91,7 @@ const BasicDetails: React.FC = () => {
 
     return (
         <>
-            <div>
+            <div id='sectionFilter'>
                 <p>Section:</p>
                 <Dropdown options={sectionOptions} onChange={(e) => setSection(e.value)} value={defaultSectionOptions} />
             </div>
@@ -126,4 +126,4 @@ const BasicDetails: React.FC = () => {
     )
 }
 
-export default BasicDetails;
+export default GalleryImages;

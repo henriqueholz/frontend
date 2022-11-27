@@ -10,7 +10,7 @@ export const Container = styled('div', {
 export const HomeContainer = styled('main', {
   display: 'flex',
   width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
+  maxWidth: '100vw',
   marginLeft: 'auto',
   height: '100%',
   minHeight: 656
@@ -44,4 +44,11 @@ export const Dog = styled('div', {
 
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
   }
+})
+
+export const HeaderText = styled('div', {
+  display: 'block',
+  width: '150px',
+  marginLeft: '45rem',
+  fontWeight: 'bold'
 })
