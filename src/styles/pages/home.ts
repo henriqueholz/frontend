@@ -23,13 +23,12 @@ export const Dog = styled('div', {
   position: 'relative',
   overflow: 'hidden',
   margin: '1rem',
-  // display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
-  // img: {
-  //   objectFit: 'cover'
-  // }, 
+  img: {
+    objectFit: 'cover'
+  }, 
   footer: {
     position: 'absolute',
     bottom: '0.25rem',

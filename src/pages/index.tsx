@@ -4,15 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import BasicDetails from "../components/galleryImages";
 
 export default function Home() {
-  const [list, setList] = useState<number[]>([])
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setList([1, 2, 3])
-    }, 2000)
-  }, [])
-
-
   return (
     <Container>
       <BasicDetails/>

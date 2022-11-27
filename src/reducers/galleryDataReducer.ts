@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux"
 
 const initialState = {
-    dummyData: [],
+    galleryData: [],
     loading: true
 }
 
-const dummyDataReducer = (state = initialState, action: any) => {
+const galleryDataReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case "getImages":
             return {
                 ... state,
-                dummyData: action.payload,
+                galleryData: action.payload,
                 loading: false
             }
 
@@ -19,4 +19,4 @@ const dummyDataReducer = (state = initialState, action: any) => {
     }
 }
 
-export default dummyDataReducer;
+export default galleryDataReducer;

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
 // Import all reducers
-import dummyDataReducer from "./dummyDataReducer";
+import galleryDataReducer from "./galleryDataReducer";
 
 const reducers = combineReducers({
-    dummyData: dummyDataReducer
+    galleryData: galleryDataReducer
 })
 
 export default reducers;

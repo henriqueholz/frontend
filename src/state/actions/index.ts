@@ -1,1 +1,1 @@
-export * as dummyDataActionCreators from "./dummyDataActions";
+export * as galleryDataActionCreators from "./galleryActions";

@@ -18,7 +18,7 @@ import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from "react-redux";
 
 // Import all actions and bind them
-import { getImagesData } from "../state/actions/dummyDataActions";
+import { getImagesData } from "../state/actions/galleryActions";
 
 import Loader from "./loader";
 
@@ -47,7 +47,7 @@ const BasicDetails: React.FC = () => {
     const [section, setSection]= useState(defaultSectionOptions);
     const [window, setWindow]= useState(defaultWindowOptions);
 
-    const imagesData = useSelector((state: any) => state?.dummyData?.dummyData);
+    const imagesData = useSelector((state: any) => state?.galleryData?.galleryData);
 
     const dispatch = useDispatch();
 

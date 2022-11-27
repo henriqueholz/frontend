@@ -11,15 +11,10 @@ globalStyles()
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
+      <Header>
+        <Image src={logoImg.src} alt="" width={100} height={200} />
+      </Header>
       <Component {...pageProps} />
     </Provider>
   )
 }
-{/* <Provider store={store}>
-<Container>
-  <Header>
-    <Image src={logoImg.src} alt="" width={100} height={200} />
-  </Header>
-  <Component {...pageProps} />
-</Container>
-</Provider> */}
