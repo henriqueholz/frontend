@@ -66,33 +66,23 @@ const BasicDetails: React.FC = () => {
         //     }).then((res) => 
         //     dispatch(getImagesData(res.data)))
         // } catch (error) {
-            // hot, viral, week
-            console.log("sort: " + sort + ", section: " + section + ", window: " + window)
-            if (section == 'hot' && sort == 'top' && window == 'day') {
-                dispatch(getImagesData(hotTopDayMock.data))
-            } else  if (section == 'hot' && sort == 'top' && window == 'week') {
-                dispatch(getImagesData(hotTopWeekMock.data))
-            } else  if (section == 'hot' && sort == 'viral' && window == 'day') {
-                dispatch(getImagesData(hotViralDayMock.data))
-            } else  if (section == 'hot' && sort == 'viral' && window == 'week') {
-                dispatch(getImagesData(hotViralWeekMock.data))
-            } else  if (section == 'top' && sort == 'top' && window == 'day') {
-                dispatch(getImagesData(topTopDayMock.data))
-            } else  if (section == 'top' && sort == 'top' && window == 'week') {
-                dispatch(getImagesData(topTopWeekMock.data))
-            } else  if (section == 'top' && sort == 'viral' && window == 'day') {
-                dispatch(getImagesData(topViralDayMock.data))
-            } else  if (section == 'top' && sort == 'viral' && window == 'week') {
-                dispatch(getImagesData(topViralWeekMock.data))
-            }
-            // top, hot, week
-            // hot, hot, week
-            // top, viral, week
-            // hot, viral, day
-            // top, hot, day
-            // hot, hot, day
-            // top, viral, day
-        // }
+        if (section == 'hot' && sort == 'top' && window == 'day') {
+            dispatch(getImagesData(hotTopDayMock.data))
+        } else  if (section == 'hot' && sort == 'top' && window == 'week') {
+            dispatch(getImagesData(hotTopWeekMock.data))
+        } else  if (section == 'hot' && sort == 'viral' && window == 'day') {
+            dispatch(getImagesData(hotViralDayMock.data))
+        } else  if (section == 'hot' && sort == 'viral' && window == 'week') {
+            dispatch(getImagesData(hotViralWeekMock.data))
+        } else  if (section == 'top' && sort == 'top' && window == 'day') {
+            dispatch(getImagesData(topTopDayMock.data))
+        } else  if (section == 'top' && sort == 'top' && window == 'week') {
+            dispatch(getImagesData(topTopWeekMock.data))
+        } else  if (section == 'top' && sort == 'viral' && window == 'day') {
+            dispatch(getImagesData(topViralDayMock.data))
+        } else  if (section == 'top' && sort == 'viral' && window == 'week') {
+            dispatch(getImagesData(topViralWeekMock.data))
+        }
     }
 
     useEffect(() => {
@@ -121,7 +111,7 @@ const BasicDetails: React.FC = () => {
                     imagesData.map((individualData: any) => {
                         return (                       
                             <Dog>
-                                <Image src={Shirt} width={520} height={480} alt="" />
+                                <Image src={individualData.images != null && individualData.images[0].type == 'image/jpeg' ? individualData.images[0].link : Shirt} width={520} height={480} alt="" />
                                 <footer>
                                     <strong>{individualData.title}</strong>
                                     <span>{individualData.description}</span>
