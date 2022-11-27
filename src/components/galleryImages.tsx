@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Dog } from "../styles/pages/home"
 import Image from "next/image"
 import Shirt from '../assets/shirt.svg'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 // Import hooks provided by react-redux
 import { useSelector, useDispatch } from "react-redux";
@@ -15,8 +17,14 @@ import Loader from "./loader";
 // Add routing
 import { useRouter } from "next/router";
 
+const sectionOptions = [
+    'No filter', 'hot', 'top', 'user'
+];
+const defaultSectionOptions = sectionOptions[0];
+
 const BasicDetails: React.FC = () => {
     const [count, setCount] = useState(0);
+    const [filterSectionValue, setFilterSectionValue]= useState('');
 
     useEffect(() => {
         setTimeout(() => {
@@ -25,6 +33,7 @@ const BasicDetails: React.FC = () => {
     },[])
 
     const imagesData = useSelector((state: any) => state?.dummyData?.dummyData);
+
     const dispatch = useDispatch();
 
     const fetchImagesData= async () => {
@@ -145,7 +154,7 @@ const BasicDetails: React.FC = () => {
                     "vote": null,
                     "favorite": false,
                     "nsfw": null,
-                    "section": null,
+                    "section": "user",
                     "account_url": "henriquehcastro",
                     "account_id": 167025617,
                     "is_ad": false,
@@ -175,7 +184,7 @@ const BasicDetails: React.FC = () => {
                     "vote": null,
                     "favorite": false,
                     "nsfw": null,
-                    "section": null,
+                    "section": "top",
                     "account_url": "henriquehcastro",
                     "account_id": 167025617,
                     "is_ad": false,
@@ -205,7 +214,7 @@ const BasicDetails: React.FC = () => {
                     "vote": null,
                     "favorite": false,
                     "nsfw": null,
-                    "section": null,
+                    "section": "hot",
                     "account_url": "henriquehcastro",
                     "account_id": 167025617,
                     "is_ad": false,
@@ -225,33 +234,33 @@ const BasicDetails: React.FC = () => {
             "status": 200
         };
         dispatch(getImagesData(res.data))
-        console.log(getImagesData(res.data))
     }
 
     useEffect(() => {
         fetchImagesData()
-        console.log(imagesData);
-
     },[])
 
-    console.log(imagesData);
     return (
         <>
-            {
+            <Dropdown options={sectionOptions} onChange={(e) => setFilterSectionValue(e.value)} value={defaultSectionOptions} />
+            { 
                 (!imagesData && imagesData == undefined) ? 
                     <Loader/>
                     :
                     imagesData.map((individualData: any) => {
-                        return (                       
-                            <Dog>
-                                <Image src={Shirt} width={520} height={480} alt="" />
-                                <footer>
-                                    <strong>{individualData.title}</strong>
-                                    <span>{individualData.description}</span>
-                                    <span>{individualData.section}</span>
-                                </footer>                                
-                            </Dog>
-                        )
+                        if(individualData != null && (individualData.section != null && individualData.section == filterSectionValue) || filterSectionValue == "No filter") {
+                            return (                       
+                                <Dog>
+                                    <Image src={Shirt} width={520} height={480} alt="" />
+                                    <footer>
+                                        <strong>{individualData.title}</strong>
+                                        <span>{individualData.description}</span>
+                                        <span>{individualData.section}</span>
+                                    </footer>                                
+                                </Dog>
+                            )
+                        }
+                        
                     }
                 )  
             }
