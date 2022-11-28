@@ -53,18 +53,13 @@ const GalleryImages: React.FC = () => {
 
     const fetchImagesData = async () => {
         const url = `${API_URL}/${section}/${sort}/${window}/0?album_previews=true`;
-        // fetch(url,{
-        //     headers: {
-        //         'Authorization': 'Client-ID 4e45cd0c61d89b2',
-        //     },
-        //     mode: 'cors',
         try {
             await axios.get(url, {         
                 headers: {
                     'Authorization': 'Client-ID 0408f6546f534d1',
                 }
             }).then((res) => 
-            dispatch(getImagesData(res.data)))
+            dispatch(getImagesData(res.data.data)))
         } catch (error) {
             if (section == 'hot' && sort == 'top' && window == 'day') {
                 dispatch(getImagesData(hotTopDayMock.data))
@@ -114,9 +109,7 @@ const GalleryImages: React.FC = () => {
                             <GridImage data-testid="gridImage">
                                 <Image src={individualData.images != null && individualData.images[0].type == 'image/jpeg' ? individualData.images[0].link : NoImage} width={320} height={280} alt="" />
                                 <footer>
-                                    <strong>{individualData.title}</strong>
                                     <span>{individualData.description}</span>
-                                    <span>{individualData.section}</span>
                                 </footer>                                
                             </GridImage>
                         )

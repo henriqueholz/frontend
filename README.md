@@ -9,10 +9,12 @@ npm install
 run the development server:
 
 ```bash
-npm run dev
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For some reason the request gets a 429 error if running using localhost as host, to bypass this I am using host 0.0.0.0.
+
+Open [http://0.0.0.0:3000/](http://0.0.0.0:3000/) with your browser to see the result.
 
 # Testing
 
@@ -41,4 +43,4 @@ Each time one of these dropdown values changes, a new request is sent with the d
 The request results will be shown in a grid, the image description is on the image bottom.
 If the result has a result.images.type "image/jpeg", then the result.images.link image is shown on the grid, if not a "no image available" is shown.
 
-I downloaded some request results with different filter values to help me develop the solution, they are now used as a fallback mock, if the request does not work the solution will use these mocks instead.
+There are a few request results using different filter values as a fallback mock in case the imgur API does not work.
