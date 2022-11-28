@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Dog } from "../styles/pages/home"
+import { GridImage } from "../styles/pages/home"
 import Image from "next/image"
 import Shirt from '../assets/shirt.svg'
+import NoImage from '../assets/no-image.svg'
+
 import Dropdown from 'react-dropdown';
 import hotViralWeekMock from "../mockResponses/hotViralWeekMock.json"
 import topTopWeekMock from "../mockResponses/topTopWeekMock.json"
@@ -91,15 +93,15 @@ const GalleryImages: React.FC = () => {
 
     return (
         <>
-            <div id='sectionFilter'>
+            <div data-testid="sectionDiv">
                 <p>Section:</p>
                 <Dropdown options={sectionOptions} onChange={(e) => setSection(e.value)} value={defaultSectionOptions} />
             </div>
-            <div>
+            <div data-testid="sortDiv">
                 <p>Sort:</p>
                 <Dropdown options={sortOptions} onChange={(e) => setSort(e.value)} value={defaultSortOptions} />
             </div>
-            <div>
+            <div  data-testid="windowDiv">
                 <p>Window:</p>
                 <Dropdown options={windowOptions} onChange={(e) => setWindow(e.value)} value={defaultWindowOptions} />
             </div>
@@ -110,14 +112,14 @@ const GalleryImages: React.FC = () => {
                     :
                     imagesData.map((individualData: any) => {
                         return (                       
-                            <Dog>
-                                <Image src={individualData.images != null && individualData.images[0].type == 'image/jpeg' ? individualData.images[0].link : Shirt} width={520} height={480} alt="" />
+                            <GridImage data-testid="gridImage">
+                                <Image src={individualData.images != null && individualData.images[0].type == 'image/jpeg' ? individualData.images[0].link : NoImage} width={320} height={280} alt="" />
                                 <footer>
                                     <strong>{individualData.title}</strong>
                                     <span>{individualData.description}</span>
                                     <span>{individualData.section}</span>
                                 </footer>                                
-                            </Dog>
+                            </GridImage>
                         )
                     }     
                 )  
