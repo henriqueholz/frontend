@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { getImagesData } from "../../state/actions/galleryActions";
 import galleryDataReducer from "../../reducers/galleryDataReducer"
-import hotTopDayMock from "../../mockResponses/hotTopDayMock.json"
+import hotTopDayMock from "../../mock/hotTopDayMock.json"
 
 describe("Index page", () => {
   const initialState = {};
@@ -37,3 +37,4 @@ describe("Index page", () => {
     expect(getImagesData(hotTopDayMock.data).type).toBe("getImages");
   });
 });
+

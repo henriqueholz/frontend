@@ -1,31 +1,14 @@
-import axios from "axios";
+import axios from "../config/axios";
 import React, { useState, useEffect } from "react";
 import { GridImage } from "../styles/pages/home"
 import Image from "next/image"
 import NoImage from '../assets/no-image.svg'
 import Dropdown from 'react-dropdown';
-import hotViralWeekMock from "../mockResponses/hotViralWeekMock.json"
-import topTopWeekMock from "../mockResponses/topTopWeekMock.json"
-import hotTopWeekMock from "../mockResponses/hotTopWeekMock.json"
-import topViralWeekMock from "../mockResponses/topViralWeekMock.json"
-import hotViralDayMock from "../mockResponses/hotViralDayMock.json"
-import topTopDayMock from "../mockResponses/topTopDayMock.json"
-import hotTopDayMock from "../mockResponses/hotTopDayMock.json"
-import topViralDayMock from "../mockResponses/topViralDayMock.json"
-import 'react-dropdown/style.css';
-
-// Import hooks provided by react-redux
-import { useSelector, useDispatch } from "react-redux";
-
-// Import all actions and bind them
-import { getImagesData } from "../state/actions/galleryActions";
-
 import Loader from "./loader";
-
-// Add routing
-import { useRouter } from "next/router";
-
-const API_URL = "https://api.imgur.com/3/gallery";
+import 'react-dropdown/style.css';
+import { useSelector, useDispatch } from "react-redux";
+import { getImagesData, Gallery } from "../state/actions/galleryActions";
+import { getMockResponse } from "../mock";
 
 const sortOptions = [
     'viral', 'top', 'time', 'rising'
@@ -52,31 +35,22 @@ const GalleryImages: React.FC = () => {
     const dispatch = useDispatch();
 
     const fetchImagesData = async () => {
-        const url = `${API_URL}/${section}/${sort}/${window}/0?album_previews=true`;
         try {
-            await axios.get(url, {         
-                headers: {
-                    'Authorization': 'Client-ID 0408f6546f534d1',
-                }
-            }).then((res) => 
-            dispatch(getImagesData(res.data.data)))
+            const { data } = await axios.get(`${section}/${sort}/${window}/0?album_previews=true`)
+            let galleryList: Gallery[] = data.data
+            let galleryImagesList: Gallery[] = await galleryList.filter(x => {
+                return x.images != null && x.images[0].type == 'image/jpeg'
+            })
+            await dispatch(getImagesData(galleryImagesList));
+            console.log(getImagesData(galleryImagesList))
         } catch (error) {
-            if (section == 'hot' && sort == 'top' && window == 'day') {
-                dispatch(getImagesData(hotTopDayMock.data))
-            } else  if (section == 'hot' && sort == 'top' && window == 'week') {
-                dispatch(getImagesData(hotTopWeekMock.data))
-            } else  if (section == 'hot' && sort == 'viral' && window == 'day') {
-                dispatch(getImagesData(hotViralDayMock.data))
-            } else  if (section == 'hot' && sort == 'viral' && window == 'week') {
-                dispatch(getImagesData(hotViralWeekMock.data))
-            } else  if (section == 'top' && sort == 'top' && window == 'day') {
-                dispatch(getImagesData(topTopDayMock.data))
-            } else  if (section == 'top' && sort == 'top' && window == 'week') {
-                dispatch(getImagesData(topTopWeekMock.data))
-            } else  if (section == 'top' && sort == 'viral' && window == 'day') {
-                dispatch(getImagesData(topViralDayMock.data))
-            } else  if (section == 'top' && sort == 'viral' && window == 'week') {
-                dispatch(getImagesData(topViralWeekMock.data))
+            console.log("An unexpected error happened", error)
+            let mockResponse = getMockResponse({section, sort, window})
+            console.log(mockResponse)
+            if (mockResponse != undefined) {
+                await dispatch(getImagesData(mockResponse))
+            } else {
+                console.log("Mock Response not found")
             }
         }
     }
@@ -109,7 +83,7 @@ const GalleryImages: React.FC = () => {
                             <GridImage data-testid="gridImage">
                                 <Image src={individualData.images != null && individualData.images[0].type == 'image/jpeg' ? individualData.images[0].link : NoImage} width={320} height={280} alt="" />
                                 <footer>
-                                    <span>{individualData.description}</span>
+                                    <span>{individualData.description != null ? individualData.description : individualData.title}</span>
                                 </footer>                                
                             </GridImage>
                         )

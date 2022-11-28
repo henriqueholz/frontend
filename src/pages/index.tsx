@@ -1,12 +1,12 @@
-import { Container, HeaderText, GridRow, HeaderDiv } from "../styles/pages/home";
+import { Container, HeaderText, GridRow, Header } from "../styles/pages/home";
 import GalleryImages from "../components/galleryImages";
 
 export default function Home() {
   return (
     <Container>
-      <HeaderDiv>
+      <Header>
         <HeaderText>Frontend Challenge</HeaderText>
-      </HeaderDiv>
+      </Header>
       <GridRow>
         <GalleryImages/>
       </GridRow>

@@ -52,7 +52,7 @@ export const GridImage = styled('div', {
   }
 })
 
-export const HeaderDiv = styled('div', {
+export const Header = styled('div', {
   display: 'block',
   justifyContent: 'center',
   fontSize: '17px',

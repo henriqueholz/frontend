@@ -37,10 +37,13 @@ Time:        1.602 s
 ## Provide information about your approach
 
 There are 3 dropdowns on the top of the page, each one is responsible for one of the parameters required to perform the Imgur gallery request: Gallery section, window, and sort.
+
 Once the page is loaded for the first time, it will perform the first request, using section = hot, sort = viral, and window = day.
+
 Each time one of these dropdown values changes, a new request is sent with the dropdown values, updating the page with the new result.
 
-The request results will be shown in a grid, the image description is on the image bottom.
-If the result has a result.images.type "image/jpeg", then the result.images.link image is shown on the grid, if not a "no image available" is shown.
+The request results will be shown in a grid, the image description is on the image bottom. If description field is null, title value will be shown.
 
-There are a few request results using different filter values as a fallback mock in case the imgur API does not work.
+The request values will be filtered, only results with result.images.type "image/jpeg" will be shown on the grid, if the result.images.link field is empty a "no image available" is shown.
+
+The application must run on http://0.0.0.0:3000/, otherwise the requests will not work. There are a few result mocks available for this scenario.
