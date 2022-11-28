@@ -2,9 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { GridImage } from "../styles/pages/home"
 import Image from "next/image"
-import Shirt from '../assets/shirt.svg'
 import NoImage from '../assets/no-image.svg'
-
 import Dropdown from 'react-dropdown';
 import hotViralWeekMock from "../mockResponses/hotViralWeekMock.json"
 import topTopWeekMock from "../mockResponses/topTopWeekMock.json"
@@ -54,36 +52,37 @@ const GalleryImages: React.FC = () => {
     const dispatch = useDispatch();
 
     const fetchImagesData = async () => {
-        // const url = `${API_URL}/${section}/${sort}/${window}/0?album_previews=true`;
-        // // fetch(url,{
-        // //     headers: {
-        // //         'Authorization': 'Client-ID 4e45cd0c61d89b2',
-        // //     },
-        // //     mode: 'cors',
-        // try {
-        //     await axios.get(url, {         
-        //         headers: {
-        //             'Authorization': 'Client-ID 0408f6546f534d1',
-        //         }
-        //     }).then((res) => 
-        //     dispatch(getImagesData(res.data)))
-        // } catch (error) {
-        if (section == 'hot' && sort == 'top' && window == 'day') {
-            dispatch(getImagesData(hotTopDayMock.data))
-        } else  if (section == 'hot' && sort == 'top' && window == 'week') {
-            dispatch(getImagesData(hotTopWeekMock.data))
-        } else  if (section == 'hot' && sort == 'viral' && window == 'day') {
-            dispatch(getImagesData(hotViralDayMock.data))
-        } else  if (section == 'hot' && sort == 'viral' && window == 'week') {
-            dispatch(getImagesData(hotViralWeekMock.data))
-        } else  if (section == 'top' && sort == 'top' && window == 'day') {
-            dispatch(getImagesData(topTopDayMock.data))
-        } else  if (section == 'top' && sort == 'top' && window == 'week') {
-            dispatch(getImagesData(topTopWeekMock.data))
-        } else  if (section == 'top' && sort == 'viral' && window == 'day') {
-            dispatch(getImagesData(topViralDayMock.data))
-        } else  if (section == 'top' && sort == 'viral' && window == 'week') {
-            dispatch(getImagesData(topViralWeekMock.data))
+        const url = `${API_URL}/${section}/${sort}/${window}/0?album_previews=true`;
+        // fetch(url,{
+        //     headers: {
+        //         'Authorization': 'Client-ID 4e45cd0c61d89b2',
+        //     },
+        //     mode: 'cors',
+        try {
+            await axios.get(url, {         
+                headers: {
+                    'Authorization': 'Client-ID 0408f6546f534d1',
+                }
+            }).then((res) => 
+            dispatch(getImagesData(res.data)))
+        } catch (error) {
+            if (section == 'hot' && sort == 'top' && window == 'day') {
+                dispatch(getImagesData(hotTopDayMock.data))
+            } else  if (section == 'hot' && sort == 'top' && window == 'week') {
+                dispatch(getImagesData(hotTopWeekMock.data))
+            } else  if (section == 'hot' && sort == 'viral' && window == 'day') {
+                dispatch(getImagesData(hotViralDayMock.data))
+            } else  if (section == 'hot' && sort == 'viral' && window == 'week') {
+                dispatch(getImagesData(hotViralWeekMock.data))
+            } else  if (section == 'top' && sort == 'top' && window == 'day') {
+                dispatch(getImagesData(topTopDayMock.data))
+            } else  if (section == 'top' && sort == 'top' && window == 'week') {
+                dispatch(getImagesData(topTopWeekMock.data))
+            } else  if (section == 'top' && sort == 'viral' && window == 'day') {
+                dispatch(getImagesData(topViralDayMock.data))
+            } else  if (section == 'top' && sort == 'viral' && window == 'week') {
+                dispatch(getImagesData(topViralWeekMock.data))
+            }
         }
     }
 
