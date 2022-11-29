@@ -5,7 +5,7 @@ const initialState = {
 
 const galleryDataReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case "getImages":
+        case 'getImages':
             return {
                 ... state,
                 galleryData: action.payload,

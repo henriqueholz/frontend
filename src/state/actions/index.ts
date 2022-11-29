@@ -1,1 +1,1 @@
-export * as galleryDataActionCreators from "./galleryActions";
+export * as galleryDataActionCreators from './galleryActions'

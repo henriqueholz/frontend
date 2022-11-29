@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import galleryDataReducer from "./galleryDataReducer";
+import { combineReducers } from 'redux';
+import galleryDataReducer from './galleryDataReducer';
 
 const reducers = combineReducers({
     galleryData: galleryDataReducer

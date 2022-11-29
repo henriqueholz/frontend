@@ -1,10 +1,6 @@
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
-
-// Import thunk middleware
-import thunk from "redux-thunk";
-
-// Import all reducers created
-import reducers from "../reducers/index";
+import { legacy_createStore as createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import reducers from '../reducers/index'
 
 export const store = createStore(
     reducers,

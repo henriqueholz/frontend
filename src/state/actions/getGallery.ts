@@ -1,5 +1,5 @@
-import axios from "../../config/axios";
-import { Gallery, getImagesData as getImagesDataSuccess } from "./galleryActions";
+import axios from '../../config/axios'
+import { Gallery, getImagesData as getImagesDataSuccess } from './galleryActions'
 
 
 export const getGallery = ({section, sort, window }: any) => async (dispatch: any) => {
@@ -9,7 +9,7 @@ export const getGallery = ({section, sort, window }: any) => async (dispatch: an
           return x.images != null && x.images[0].type == 'image/jpeg'
       
     })
-    dispatch(getImagesDataSuccess(galleryImagesList));
+    dispatch(getImagesDataSuccess(galleryImagesList))
     return galleryImagesList
   })
-};
+}

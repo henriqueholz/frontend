@@ -1,5 +1,5 @@
-import { Container, HeaderText, GridRow, Header } from "../styles/pages/home";
-import GalleryImages from "../components/galleryImages";
+import { Container, HeaderText, GridRow, Header } from '../styles/pages/home'
+import GalleryImages from '../components/galleryImages'
 
 export default function Home() {
   return (
