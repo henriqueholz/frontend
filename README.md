@@ -36,6 +36,8 @@ Time:        1.602 s
 
 ## Provide information about your approach
 
+Solution implemented using React, Next, and Typescript.
+
 There are 3 dropdowns on the top of the page, each one is responsible for one of the parameters required to perform the Imgur gallery request: Gallery section, window, and sort.
 
 Once the page is loaded for the first time, it will perform the first request, using section = hot, sort = viral, and window = day.
@@ -46,4 +48,4 @@ The request results will be shown in a grid, the image description is on the ima
 
 The request values will be filtered, only results with result.images.type "image/jpeg" will be shown on the grid, if the result.images.link field is empty a "no image available" is shown.
 
-The application must run on http://0.0.0.0:3000/, otherwise the requests will not work. There are a few result mocks available for this scenario.
+The application must run on http://0.0.0.0:3000/, otherwise the requests will not work. There are a few response mocks available.

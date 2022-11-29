@@ -1,4 +1,3 @@
-import axios from "../config/axios";
 import React, { useState, useEffect } from "react";
 import { GridImage } from "../styles/pages/home"
 import Image from "next/image"
@@ -7,8 +6,9 @@ import Dropdown from 'react-dropdown';
 import Loader from "./loader";
 import 'react-dropdown/style.css';
 import { useSelector, useDispatch } from "react-redux";
-import { getImagesData, Gallery } from "../state/actions/galleryActions";
+import { getImagesData } from "../state/actions/galleryActions";
 import { getMockResponse } from "../mock";
+import { getGallery } from "../state/actions/getGallery";
 
 const sortOptions = [
     'viral', 'top', 'time', 'rising'
@@ -36,17 +36,10 @@ const GalleryImages: React.FC = () => {
 
     const fetchImagesData = async () => {
         try {
-            const { data } = await axios.get(`${section}/${sort}/${window}/0?album_previews=true`)
-            let galleryList: Gallery[] = data.data
-            let galleryImagesList: Gallery[] = await galleryList.filter(x => {
-                return x.images != null && x.images[0].type == 'image/jpeg'
-            })
-            await dispatch(getImagesData(galleryImagesList));
-            console.log(getImagesData(galleryImagesList))
+            dispatch(getGallery({section, sort, window}) as any)
         } catch (error) {
             console.log("An unexpected error happened", error)
             let mockResponse = getMockResponse({section, sort, window})
-            console.log(mockResponse)
             if (mockResponse != undefined) {
                 await dispatch(getImagesData(mockResponse))
             } else {
@@ -76,7 +69,9 @@ const GalleryImages: React.FC = () => {
 
             { 
                 (!imagesData && imagesData == undefined) ? 
+                <>
                     <Loader/>
+                    </>
                     :
                     imagesData.map((individualData: any) => {
                         return (                       

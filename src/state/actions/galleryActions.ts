@@ -6,10 +6,6 @@ export type Gallery = {
     images: Images[];
   };
 
-export type GalleryList = {
-    data: Gallery[];
-  };
-
   type Images = {
     type: string;
     link: string;
