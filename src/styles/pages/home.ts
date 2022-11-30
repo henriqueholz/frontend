@@ -25,18 +25,13 @@ export const GridRow = styled('div', {
 
 export const GridImage = styled('div', {
   transition: 'filter 0.5s ease',
-  display: 'flex',
   cursor: 'pointer',
-  textAlign: 'center',
-  flexDirection: 'column-reverse',
-  alignItems: 'stretch',
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
   position: 'relative',
   overflow: 'hidden',
-  margin: 'auto',
   img: {
-    objectPosition: 'center',
+    paddingTop: '5px'
   }, 
   footer: {
     position: 'absolute',
@@ -55,15 +50,23 @@ export const GridImage = styled('div', {
 export const Header = styled('div', {
   display: 'block',
   justifyContent: 'center',
-  fontSize: '17px',
-  fontWeight: 'bold',
-  textAlign: 'center',
+  height: '40px',
+  backgroundColor: 'rgba(41,87,108,255)',
+  borderRadius: 8,
 })
 
-export const HeaderText = styled('div', {
+export const HeaderText = styled('p', {
   textAlign: 'center',
   display: 'block',
   justifyContent: 'center',
-  fontSize: '17px',
-  fontWeight: 'bold'
+  fontSize: '30px',
+
+})
+
+export const DropdownLabel = styled('p', {
+  textAlign: 'center',
+  display: 'block',
+  justifyContent: 'center',
+  fontSize: '20px',
+  margin: '10px',
 })

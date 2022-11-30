@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { GridImage } from '../styles/pages/home'
+import { DropdownLabel, GridImage } from '../styles/pages/home'
 import Image from 'next/image'
 import NoImage from '../assets/no-image.svg'
 import Dropdown from 'react-dropdown'
@@ -55,15 +55,15 @@ const GalleryImages: React.FC = () => {
     return (
         <>
             <div data-testid='sectionDiv'>
-                <p>Section:</p>
+                <DropdownLabel>Section:</DropdownLabel>
                 <Dropdown options={sectionOptions} onChange={(e) => setSection(e.value)} value={defaultSectionOptions} />
             </div>
             <div data-testid='sortDiv'>
-                <p>Sort:</p>
+                <DropdownLabel>Sort:</DropdownLabel>
                 <Dropdown options={sortOptions} onChange={(e) => setSort(e.value)} value={defaultSortOptions} />
             </div>
             <div  data-testid='windowDiv'>
-                <p>Window:</p>
+                <DropdownLabel>Window:</DropdownLabel>
                 <Dropdown options={windowOptions} onChange={(e) => setWindow(e.value)} value={defaultWindowOptions} />
             </div>
 
